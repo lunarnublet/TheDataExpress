@@ -1,0 +1,19 @@
+- Requirements
+    - Pages must be Pug/Express
+    - Database in mongo
+    - Accounts
+        - Username
+        - Password
+        - Is admin or user
+        - Answer to three questions
+
+    - Pages
+        - Home Page
+            -Bar graph for answer statistics
+        - Admin page
+            - Shows all people and allowes deletion
+        - Login page
+            - Login maintained across session (use express session)
+            - Page to allow users to update their info
+            - Logout button destroys session info
+            - Display last time visited using cookies
