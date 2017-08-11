@@ -1,0 +1,18 @@
+doctype html
+html
+    head
+        title #{title}
+    body
+        div(id='page-wrapper')
+            header(class='main-nav')
+                h1(class='brand') Express Burger
+                nav(class='nav-flex') 
+                    ul(class='nav-list')
+                        each item in config.nav
+                            li(class='nav-item')
+                                a(href=item[1]) #{item[0]}
+            div(id="content")
+                block content
+        footer
+            h6 The Date Express &copy2017
+        block script
