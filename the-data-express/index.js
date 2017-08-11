@@ -1,6 +1,7 @@
 var express = require('express');
+var path = require('path');
 
-var homeController = require('./controllers/index.js');
+var homeController = require('./controllers/home.js');
 
 var app = express();
 
@@ -11,5 +12,7 @@ app.use(express.static(path.join(__dirname + '/public')));
 var router = express.Router();
 
 router.get('/', homeController.home);
+
+app.use('/', router);
 
 app.listen(3000);
