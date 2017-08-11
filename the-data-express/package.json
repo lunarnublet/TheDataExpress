@@ -10,12 +10,13 @@
   "author": "something",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.16.1",
-    "express": "^4.14.1",
-    "mongoose": "^4.8.3",
-    "pug": "^2.0.0-beta11",
+    "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
+    "express": "^4.14.1",
     "express-session": "^1.15.5",
-    "bcrypt-nodejs": "0.0.3"
+    "mongoose": "^4.11.6",
+    "pug": "^2.0.0-beta11"
   }
 }

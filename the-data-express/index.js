@@ -1,4 +1,7 @@
 var express = require('express');
+var mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
+
 var path = require('path');
 
 var homeController = require('./controllers/home.js');
