@@ -4,7 +4,7 @@ mongoose.Promise = require('bluebird');
 
 var path = require('path');
 
-var homeController = require('./controllers/home.js');
+var routesController = require('./controllers/routes.js');
 
 var app = express();
 
@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname + '/public')));
 
 var router = express.Router();
 
-router.get('/', homeController.home);
+router.get('/', routesController.home);
 
 app.use('/', router);
 

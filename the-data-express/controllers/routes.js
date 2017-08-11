@@ -20,11 +20,30 @@ var userSchema = mongoose.Schema({
   answer3: String
 });
 
-
 var User = mongoose.model('User_Accounts', userSchema);
 
+function testuser ()
+{
+    var user = new User({
+        username: "TestUser",
+        password: "password",
+        age: "25",
+        email: "test@user.idk",
+        isAdmin: "false",
+        answer1: "1",
+        answer2: "4",
+        answer3: "2"
+      });
+    user.save(function (err, user) {
+        if (err) return console.error(err);
+        console.log(user.username + ' added');
+      });
+}
+
 exports.home = function (req, res) {
+    testuser();
     res.render("index", { config: config,
-        title: "The Data Express"
+        title: "The Data Express",
+
     });
 }
