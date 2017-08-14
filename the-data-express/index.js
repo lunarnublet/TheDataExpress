@@ -19,12 +19,9 @@ app.use(express.static(path.join(__dirname + '/public')));
 var router = express.Router();
 
 router.get('/', routesController.home);
+router.get('/login', routesController.login)
 
 app.use('/', router);
-
-app.get('/login', function (req, res) {
-    res.render('login');
-});
 
 app.post('/login', urlencodedParser, function (req, res) {
     console.log(req.body.userName);  
