@@ -25,6 +25,11 @@ app.use('/', router);
 
 app.post('/login', urlencodedParser, function (req, res) {
     console.log(req.body.userName);  
+    res.render('questions', req.body);
+});
+
+app.post('/questions', urlencodedParser, function (req, res) {
+    console.log(req.body.userName);  
     res.render('landing', req.body);
 });
 
