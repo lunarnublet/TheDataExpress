@@ -1,0 +1,14 @@
+doctype html
+html
+    head
+        title #{title}
+    body
+        h3 Name Entry
+        form(id="form" method="post", action="/login")
+            label Name
+            br
+            input(type="text" name="userName")
+            br
+            input(type="password", name="password")
+            br
+            input(type="submit" value="Submit")
