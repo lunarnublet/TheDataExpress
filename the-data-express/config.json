@@ -1,6 +1,7 @@
 {
     "nav": 
     [
-        ["Home", "/"]
+        ["Home", "/"],
+        ["Login", "/login"]
     ]
 }

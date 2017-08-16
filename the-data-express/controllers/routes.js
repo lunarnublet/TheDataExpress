@@ -44,6 +44,12 @@ exports.home = function (req, res) {
     testuser();
     res.render("index", { config: config,
         title: "The Data Express",
+    });
 
+}
+exports.login = function (req, res) {
+    testuser();
+    res.render("login", { config: config,
+        title: "Login Page",
     });
 }
