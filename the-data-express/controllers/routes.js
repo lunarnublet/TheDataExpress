@@ -26,9 +26,9 @@ var User = mongoose.model('User_Accounts', userSchema);
 
 function testusers ()
 {
+    checkUsers();
     for(var i = 0; i < 20; ++i)
     {
-        checkUsers();
         var user = new User({
             username: "TestUser",
             password: "password",
