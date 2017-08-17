@@ -154,7 +154,7 @@ exports.login = function (req, res) {
         title: "Login Page",
     });
 }
-exports.loginPost = function (req, res) {
+exports.loginPost = function (req, res, next) {
     User.findOne({ username: req.body.userName }, function (err, user) {
         if (err) {
             console.log('User.findOne failed');
@@ -171,6 +171,7 @@ exports.loginPost = function (req, res) {
                     if (isValidPassword) {
                         req.session.user = user;
                         delete req.session.user.password;
+                        res.redirect('/');
                     } else {
                         res.redirect('/login');
                     }
@@ -181,11 +182,35 @@ exports.loginPost = function (req, res) {
 }
 
 exports.admin = function (req, res) {
-    var users = [
-        { id: 1, username: 'foo', email: 'foo@gmail.com', age: 322 },
-        { id: 2, username: 'bar', email: 'bar@gmail.com', age: 232 },
-        { id: 3, username: 'baz', email: 'baz@gmail.com', age: 223 },
-    ];
+    var query = User.find({});
+    query.exec().then(function (doc) {
+        if (doc) {
+            res.render('admin', { 
+                config: config, 
+                users: doc,
+                time: req.cookies.time
+            });
+        } else {
+            res.sendStatus(500);
+        }
+    });
+}
 
-    res.render('admin', { config: config, users: users, time: req.cookies.time });
+exports.deleteUser = function (req, res, next) {
+    var userId = req.query.id;
+
+    var query = User.findOneAndRemove({_id: userId});
+    query.exec().then(function (doc) {
+        res.redirect("/admin");
+    }, function (reason) {
+        res.redirect("/admin");
+    });
+}
+
+exports.editUser = function (req, res, next) {
+    var userId = req.query.id;
+    var query = User.findOne({_id: userId});
+    query.exec().then(function (val) {
+        res.render("edit", {user: val});
+    });  
 }

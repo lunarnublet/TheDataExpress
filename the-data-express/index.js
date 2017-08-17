@@ -28,9 +28,9 @@ app.use(expressSession({
 app.use(express.static(path.join(__dirname + '/public')));
 
 var router = express.Router();
-router.get('/', routesController.home);
-router.get('/login', routesController.login)
+router.get('/', sessions.saveCurrentTime, routesController.home);
 router.get('/admin', sessions.authenticate("admin"), sessions.saveCurrentTime, routesController.admin);
+router.get('/login', sessions.saveCurrentTime, routesController.login)
 router.post('/login', urlencodedParser, sessions.saveCurrentTime, routesController.loginPost);
 app.use('/', router);
 
