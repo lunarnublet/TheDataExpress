@@ -1,21 +1,19 @@
-html
-    head
-        title #{title}
-    body
-        h3 Register
-        form(id="form" method="post", action="/register")
-            label Name
-            br
-            input(type="text" name="userName")
-            br
-            label Password
-            br
-            input(type="password", name="password")
-            label Email
-            br
-            input(type="text", name="email")
-            label Age
-            br
-            input(type="number", name="age")
-            br
-            input(type="submit" value="Submit")
+extend ../layouts/layout-main
+block content
+    h3 Register
+    form(id="form" method="post", action="/register")
+        label Name
+        br
+        input(type="text" name="userName")
+        br
+        label Password
+        br
+        input(type="password", name="password")
+        label Email
+        br
+        input(type="text", name="email")
+        label Age
+        br
+        input(type="number", name="age")
+        br
+        input(type="submit" value="Submit")

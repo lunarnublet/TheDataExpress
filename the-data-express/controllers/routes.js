@@ -260,27 +260,34 @@ exports.deleteUser = function (req, res, next) {
 
 exports.editUser = function (req, res, next) {
     var userId = req.params.id ? req.params.id : req.session.user._id;
+    
+    // only let admins or the same user edit a user's information    
+    if (req.session.user.role === "admin" ||
+        req.session.user._id === userId) {
 
-    var query = User.findOne({ _id: userId });
-    query.exec().then(function (val) {
-        res.render("edit", {
-            userToEdit: val,
-            userSession: req.session.user,
-            time: req.cookies.time,            
-            config: config
+        var query = User.findOne({ _id: userId });
+        query.exec().then(function (val) {
+            res.render("edit", {
+                userToEdit: val,
+                userSession: req.session.user,
+                time: req.cookies.time,            
+                config: config
+            });
+        }, function (reason) {
+            console.log(reason);
+            res.sendStatus(400);
         });
-    }, function (reason) {
-        console.log(reason);
-        res.sendStatus(400);
-    });
+    } else {
+        res.sendStatus(403);
+    }
 }
 exports.editUserPost = function (req, res, next) {
+    var userId = req.body.id;
 
     // only let admins or the same user edit a user's information
     if (req.session.user.role === "admin" ||
-        req.session.user._id === req.body.id) {
+        req.session.user._id === userId) {
 
-        var userId = req.body.id;
         var info = { id: userId };
         if (req.body.email) info.email = req.body.email;
         if (req.body.age) info.age = req.body.age;
