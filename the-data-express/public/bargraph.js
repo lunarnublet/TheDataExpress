@@ -4,11 +4,11 @@ var ctx3 = document.getElementById("graph3").getContext("2d");
 
 function BarGraph(ctx)
 {
-    this.startArray = [];
-    this.endArray = [];
-    this.looping = false;
-    this.delta = 0;
-    this.animationComplete = false;
+    // this.startArray = [];
+    // this.endArray = [];
+    // this.looping = false;
+    // this.delta = 0;
+    // this.animationComplete = false;
 
     this.ctx = ctx;
     this.width = 450;
@@ -18,7 +18,7 @@ function BarGraph(ctx)
     this.colors = ["purple", "red", "green", "yellow"];
     this.curArr = [];
     this.backgroundColor = "#fff";
-    this.xAxisLabelArr = ["ans 1", "ans 2", "ans 3", "ans 4"];
+    this.xAxisLabelArr = [];
     this.yAxisLabelArr = [];
     this.animationInterval = 100;
     this.animationSteps = 10;
@@ -26,7 +26,6 @@ function BarGraph(ctx)
 
 BarGraph.prototype.update = function (newArr) 
 {
-    console.log("In update");
     this.curArr = newArr;
     this.draw(newArr);
     // if (this.curArr.length !== newArr.length) 
@@ -80,7 +79,6 @@ BarGraph.prototype.update = function (newArr)
 
 BarGraph.prototype.draw = function(array)
 {
-    console.log("in draw");
     var numOfBars = array.length;
     var barWidth;
     var barHeight;
@@ -135,12 +133,12 @@ BarGraph.prototype.draw = function(array)
 
         try 
         {
-            this.ctx.fillText(parseInt(array[i],10),
+            this.ctx.fillText(parseInt(array[i],10) + "%",
             i * this.width / numOfBars + (this.width / numOfBars) / 2,
             graphAreaHeight - barHeight - 10);
         } catch (ex) {}
 
-        if (this.xAxisLabelArr[i]) 
+        if (this.xAxisLabelArr[i])
         {				
             this.ctx.fillStyle = "#333";
             this.ctx.font = "bold 12px sans-serif";
@@ -155,60 +153,23 @@ BarGraph.prototype.draw = function(array)
     }
 };
 
-function interval()
-{
-    graph1.update([Math.random() * 10, 
-            Math.random() * 100, 
-            Math.random() * 100, 
-            Math.random() * 100]);
-
-    graph2.update([Math.random() * 10, 
-            Math.random() * 100, 
-            Math.random() * 100, 
-            Math.random() * 100]);
-
-    graph3.update([Math.random() * 100, 
-            Math.random() * 100, 
-            Math.random() * 100, 
-            Math.random() * 100]);
-}
-
 var graph1 = new BarGraph(ctx1);
 graph1.margin = 2;
 graph1.width = 450;
 graph1.height = 200;
-graph1.update([100,50,20,80]);
+graph1.xAxisLabelArr = graph1AnswerNames;
+graph1.update(graph1Answers);
 
 var graph2 = new BarGraph(ctx2);
 graph2.margin = 2;
 graph2.width = 450;
 graph2.height = 200;
-graph2.update([100,50,20,80]);
+graph2.xAxisLabelArr = graph2AnswerNames;
+graph2.update(graph2Answers);
 
 var graph3 = new BarGraph(ctx3);
 graph3.margin = 2;
 graph3.width = 450;
 graph3.height = 200;
-graph3.update([100,50,20,80]);
-
-document.getElementById('graph1').addEventListener('click',function(evt){
-    console.log("graph 1 clicked.");
-    graph1.update([Math.random() * 100, 
-        Math.random() * 100, 
-        Math.random() * 100, 
-        Math.random() * 100]);
-    },false);
-document.getElementById('graph2').addEventListener('click',function(evt){
-    graph2.update([Math.random() * 100, 
-        Math.random() * 100, 
-        Math.random() * 100, 
-        Math.random() * 100]);
-    },false);
-document.getElementById('graph3').addEventListener('click',function(evt){
-    graph3.update([Math.random() * 100, 
-        Math.random() * 100, 
-        Math.random() * 100, 
-        Math.random() * 100]);
-    },false);
-
-// setInterval(interval, 1000);
+graph3.xAxisLabelArr = graph3AnswerNames;
+graph3.update(graph3Answers);

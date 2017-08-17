@@ -3,4 +3,13 @@ block content
     canvas(id = "graph1")
     canvas(id = "graph2")
     canvas(id = "graph3")
+    
+block script
+    script.
+        var graph1Answers = [#{ans1}];
+        var graph2Answers = [#{ans2}];
+        var graph3Answers = [#{ans3}];
+        var graph1AnswerNames = [#{answerNames1}];
+        var graph2AnswerNames = [#{answerNames2}];
+        var graph3AnswerNames = [#{answerNames3}];
     script(src = "bargraph.js")
