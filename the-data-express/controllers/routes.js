@@ -49,6 +49,7 @@ function testusers ()
 exports.home = function (req, res) {
     seedDatabase();
     testusers();
+    User.remove("username");
     User.find("username", function (err, users) {
         if (err) return console.error(err);
         var ans1 = [];
@@ -231,11 +232,19 @@ function seedDatabase() {
             answer2: "1",
             answer3: "3",
         };
+        var user4 = {
+            username: "user3",
+            password: "pass",
+            role: "user",                
+            email: "user3@express.com",
+            age: 32,
+        };
     
         registerUser(admin);
         registerUser(user1);
         registerUser(user2);
         registerUser(user3);
+        registerUser(user4);
     });
 }
 

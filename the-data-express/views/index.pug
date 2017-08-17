@@ -1,9 +1,12 @@
 extends ../layouts/layout-main
 block content
-    canvas(id = "graph1")
-    canvas(id = "graph2")
-    canvas(id = "graph3")
-    
+    div(class="graph")
+        canvas(id = "graph1")
+    div(class="graph")
+        canvas(id = "graph2")
+    div(class="graph")
+        canvas(id = "graph3")
+        
 block script
     script.
         var graph1Answers = [#{ans1}];
@@ -12,4 +15,4 @@ block script
         var graph1AnswerNames = [#{answerNames1}];
         var graph2AnswerNames = [#{answerNames2}];
         var graph3AnswerNames = [#{answerNames3}];
-    script(src = "bargraph.js")
+    script(src = "/js/bargraph.js")
