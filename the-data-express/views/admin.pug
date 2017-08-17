@@ -1,9 +1,9 @@
 extend ../layouts/layout-main
 block content
-    p #{time}
     table
         tr
             th ID
+            th Role
             th User
             th Email
             th Age
@@ -13,6 +13,9 @@ block content
         each user in users
             tr
                 td #{user.id}
+                td #{user.role}
                 td #{user.username}
                 td #{user.email}
-                td #{user.age}          
+                td #{user.age}
+                td 
+                    a(href='/edit/' + user.id) Edit 

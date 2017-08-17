@@ -8,6 +8,7 @@ exports.destroyUserSession = function(req, res, next) {
     if (req.session.user) {
         delete req.session.user;
     }
+    next();
 }
 
 exports.authenticate = function(role) {
