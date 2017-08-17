@@ -17,7 +17,7 @@ function BarGraph(ctx)
     this.margin = 5;
     this.colors = ["purple", "red", "green", "yellow"];
     this.curArr = [];
-    this.backgroundColor = "#fff";
+    this.backgroundColor = "rgba(0,0,0,0)";
     this.xAxisLabelArr = [];
     this.yAxisLabelArr = [];
     this.animationInterval = 100;
