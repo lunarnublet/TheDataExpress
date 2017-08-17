@@ -26,11 +26,6 @@ var User = mongoose.model('User_Accounts', userSchema);
 
 exports.home = function (req, res) {
     seedDatabase();
-<<<<<<< HEAD
-=======
-    testusers();
-    User.remove("username");
->>>>>>> 00733bb82de901a5828176d2642acdcd45886a85
     User.find("username", function (err, users) {
         if (err) return console.error(err);
         var ans1 = [];
