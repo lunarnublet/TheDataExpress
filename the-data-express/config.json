@@ -1,7 +1,74 @@
 {
-    "nav": 
-    [
+    "title": "The Data Express",
+    "nav": [
         ["Home", "/"]
     ],
-    "title": "The Data Express"
+    "questions": [
+        {
+            "id": 1,
+            "question": "fizz",
+            "answers": [
+                {
+                    "id": 1,
+                    "value": "foo"
+                },
+                {
+                    "id": 2,
+                    "value": "bar"
+                },
+                {
+                    "id": 3,
+                    "value": "baz"
+                },
+                {
+                    "id": 4,
+                    "value": "biz"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "question": "buzz",
+            "answers": [
+                {
+                    "id": 1,
+                    "value": "foo"
+                },
+                {
+                    "id": 2,
+                    "value": "bar"
+                },
+                {
+                    "id": 3,
+                    "value": "baz"
+                },
+                {
+                    "id": 4,
+                    "value": "biz"
+                }
+            ]                    
+        },
+        {
+            "id": 3,
+            "question": "fizzbuzz",
+            "answers": [
+                {
+                    "id": 1,
+                    "value": "foo"
+                },
+                {
+                    "id": 2,
+                    "value": "bar"
+                },
+                {
+                    "id": 3,
+                    "value": "baz"
+                },
+                {
+                    "id": 4,
+                    "value": "biz"
+                }
+            ]                      
+        }
+    ]
 }

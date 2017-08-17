@@ -1,12 +1,13 @@
 extends ../layouts/layout-main
 block content
-    div(class="graph")
-        canvas(id = "graph1")
-    div(class="graph")
-        canvas(id = "graph2")
-    div(class="graph")
-        canvas(id = "graph3")
-        
+    each question, index in questions
+        div(class="graph")
+            h2 #{question.question}
+            ul 
+                each answer in question.answers
+                    li
+                        p #{answer.value}
+            canvas(id="graph" + (index + 1))
 block script
     script.
         var graph1Answers = [#{ans1}];
