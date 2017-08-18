@@ -2,7 +2,7 @@ var config = require("../config.json");
 var bcrypt = require('bcrypt-nodejs');
 var models;
 
-module.exports = function(repository) {
+module.exports = function (repository) {
     models = repository;
 
     return {
@@ -93,36 +93,70 @@ var home = function (req, res) {
             config: config, ans1: ans1, ans2: ans2, ans3: ans3, answerNames1: strings1, answerNames2: strings2, answerNames3: strings3,
             questions: config.questions,
             userSession: req.session.user,
-            time: req.cookies.time,                            
+            time: req.cookies.time,
         });
     });
 }
 
-
 var register = function (req, res) {
-    res.render("register", { config: config, title: "Register" });
+    res.render("register", {
+        config: config,
+        time: req.cookies.time,
+        questions: config.questions,
+    });
 }
 var registerPost = function (req, res) {
-    var query = models.Users.find({ username: req.body.userName });
-    query.exec().then(function (users) {
-        if (users.length) {
-            // name taken
-            res.redirect("/login");
-        }
+    if (!req.body.userName ||
+        !req.body.password ||
+        !req.body.email ||
+        !req.body.age ||
+        !req.body.answer1 ||
+        !req.body.answer2 ||
+        !req.body.answer3) {
+            res.redirect('/register');
+        } else {
+            
+        var info = {
+            username: req.body.userName,
+            password: req.body.password,
+            email: req.body.email,
+            age: req.body.age,
+            answer1: req.body.answer1,
+            answer2: req.body.answer2,
+            answer3: req.body.answer3,
+            role: 'user',
+        };
+        var query = models.Users.find({ username: req.body.userName });
+        query.exec().then(function (users) {
+            if (users.length) {
+                // name taken
+                res.redirect("/register");
+            } else {
+                models.registerUser(info, function() {
+                    models.tryLoginUser(info.username, info.password, function (user) {
+                        if (user) {
+                            req.session.user = user;
+                            delete req.session.user.password;
+                            res.redirect('/');
+                        } else {
+                            res.redirect('/login');
+                        }
+                    });
+                });
+            }
+        });
+    }
 
-        res.redirect("/login");
-    });
 }
 var login = function (req, res) {
     res.render("login", {
         config: config,
-        title: "Login Page",
     });
 }
 var loginPost = function (req, res, next) {
     models.tryLoginUser(req.body.userName, req.body.password, function (user) {
-        console.log(user);
-    
+        console.log("login:POST\n", user);
+
         if (user) {
             req.session.user = user;
             delete req.session.user.password;
@@ -150,12 +184,13 @@ var admin = function (req, res) {
 }
 
 var deleteUser = function (req, res, next) {
-    var userId = req.query.id;
+    var userId = req.params.id;
 
-    var query = User.findOneAndRemove({ _id: userId });
+    var query = models.Users.findOneAndRemove({ _id: userId });
     query.exec().then(function (doc) {
         res.redirect("/admin");
     }, function (reason) {
+        console.log(reason);
         res.redirect("/admin");
     });
 }
@@ -165,7 +200,7 @@ var editUser = function (req, res, next) {
 
     // only let admins or the same user edit a user's information    
     if (req.session.user.role === "admin" ||
-        req.session.user._id === userId) {
+    req.session.user._id === userId) {
 
         var query = models.Users.findOne({ _id: userId });
         query.exec().then(function (val) {
@@ -193,7 +228,7 @@ var editUserPost = function (req, res, next) {
 
     // only let admins or the same user edit a user's information
     if (req.session.user.role === "admin" ||
-        req.session.user._id === userId) {
+    req.session.user._id === userId) {
 
         var info = { id: userId };
         if (req.body.email) info.email = req.body.email;
@@ -206,7 +241,7 @@ var editUserPost = function (req, res, next) {
 
         models.editUser(userId, info, function (user) {
             if (req.session.user._id === userId) {
-                req.session.user.role = user.role;          
+                req.session.user.role = user.role;
             }
             console.log("editUser:POST\n", user);
             res.redirect('/');

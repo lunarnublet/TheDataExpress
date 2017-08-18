@@ -1,6 +1,6 @@
-var ctx1 = document.getElementById("graph1").getContext("2d");
-var ctx2 = document.getElementById("graph2").getContext("2d");
-var ctx3 = document.getElementById("graph3").getContext("2d");
+var ctx1 = document.getElementById("graph-canvas-1").getContext("2d");
+var ctx2 = document.getElementById("graph-canvas-2").getContext("2d");
+var ctx3 = document.getElementById("graph-canvas-3").getContext("2d");
 
 function BarGraph(ctx)
 {
@@ -152,6 +152,8 @@ BarGraph.prototype.draw = function(array)
         }
     }
 };
+
+var test = ["This", "Is", "Test"];
 
 var graph1 = new BarGraph(ctx1);
 graph1.margin = 2;
