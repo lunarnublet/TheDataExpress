@@ -121,7 +121,7 @@ var login = function (req, res) {
 var loginPost = function (req, res, next) {
     models.tryLoginUser(req.body.userName, req.body.password, function (user) {
         console.log(user);
-    
+
         if (user) {
             req.session.user = user;
             delete req.session.user.password;
@@ -164,7 +164,7 @@ var editUser = function (req, res, next) {
 
     // only let admins or the same user edit a user's information    
     if (req.session.user.role === "admin" ||
-        req.session.user._id === userId) {
+    req.session.user._id === userId) {
 
         var query = models.Users.findOne({ _id: userId });
         query.exec().then(function (val) {
@@ -189,7 +189,7 @@ var editUserPost = function (req, res, next) {
 
     // only let admins or the same user edit a user's information
     if (req.session.user.role === "admin" ||
-        req.session.user._id === userId) {
+    req.session.user._id === userId) {
 
         var info = { id: userId };
         if (req.body.email) info.email = req.body.email;
