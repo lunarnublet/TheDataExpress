@@ -39,10 +39,13 @@ var router = express.Router();
 router.get('/', sessions.saveCurrentTime, routesController.home);
 router.get('/login', sessions.saveCurrentTime, routesController.login);
 router.get('/logout', sessions.authenticate(), sessions.destroyUserSession, routesController.home);
+router.get('/register', sessions.saveCurrentTime, routesController.register);
 router.get('/admin', sessions.authenticate("admin"), sessions.saveCurrentTime, routesController.admin);
 router.get('/edit', sessions.authenticate(), sessions.saveCurrentTime, routesController.editUser);
 router.get('/edit/:id', sessions.authenticate(), sessions.saveCurrentTime, routesController.editUser);
+router.get('/delete/:id', sessions.authenticate("admin"), sessions.saveCurrentTime, routesController.deleteUser);
 router.post('/login', urlencodedParser, sessions.saveCurrentTime, routesController.loginPost);
+router.post('/register', urlencodedParser, sessions.saveCurrentTime, routesController.registerPost);
 router.post('/edit', sessions.authenticate(), urlencodedParser, sessions.saveCurrentTime, routesController.editUserPost);
 
 app.use('/', router);

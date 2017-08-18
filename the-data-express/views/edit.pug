@@ -34,9 +34,9 @@ block content
                             //- - console.log("" + (index + 1) +  " " + (answer.id));
                             li
                                 if userToEdit["answer" + (index + 1)] == answer.id
-                                    input(type='radio' name="answer" + question.id value=answer.id checked)
+                                    input(type='radio' name="answer" + (index + 1) value=answer.id checked)
                                 else 
-                                    input(type='radio' name="answer" + question.id value=answer.id)                                    
+                                    input(type='radio' name="answer" + (index + 1) value=answer.id)                                    
                                 label #{answer.value}
 
             input(type="submit" value="Submit")

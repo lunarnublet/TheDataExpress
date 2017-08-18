@@ -8,6 +8,7 @@ module.exports = function(mongooseModels) {
     models.tryLoginUser = tryLoginUser;
     models.registerUser = registerUser;
     models.editUser = editUser;
+    models.getQuestions = getQuestions;
 
     return models;
 }
@@ -27,15 +28,19 @@ var tryLoginUser = function(userName, password, callback) {
     var query = models.Users.findOne({ username: userName });
     
     query.exec().then(function(user){
-        var isValidPassword = bcrypt.compareSync(password, user.password);
-        console.log("valid password", isValidPassword);
-        isValidPassword ? callback(user) : callback(undefined);
+        if (user) {
+            var isValidPassword = bcrypt.compareSync(password, user.password);
+            console.log("valid password", isValidPassword);
+            isValidPassword ? callback(user) : callback(undefined);
+        } else {
+            callback(undefined);
+        }
     });
 }
 
 // do this after all validation checks
 // data must have a non-hashed password
-var registerUser = function(data) {
+var registerUser = function(data, callback) {
     bcrypt.hash(data.password, null, null, function (err, hashedPass) {
         if (err) return false;
 
@@ -51,8 +56,16 @@ var registerUser = function(data) {
         });
         user.save(function (err, user) {
             if (err) return false;
+            if (callback) callback();
             return true;
         });
+    });
+}
+
+var getQuestions = function(callback) {
+    var query = models.Questions.find({});
+    query.exec().then(function (questions) {
+
     });
 }
 
@@ -62,7 +75,7 @@ function deleteAllUsers() {
     allUsers.exec().then(function (doc) {
         if (doc) {
             doc.forEach(function(user) {
-            console.log("found user", user);  
+            console.log("  found user: ", user.username);  
             });
         }
     });
@@ -104,9 +117,9 @@ function seedDatabase() {
                 age: 25,
                 email: "user" + i + "@express.com",
                 role: "user",
-                answer1: Math.floor((Math.random() * 4) + 1),
-                answer2: Math.floor((Math.random() * 4) + 1),
-                answer3: Math.floor((Math.random() * 4) + 1)
+                answer1: Math.floor((Math.random() * 4)) + 1,
+                answer2: Math.floor((Math.random() * 4)) + 1,
+                answer3: Math.floor((Math.random() * 4)) + 1
             };
             registerUser(user);
             // user.save(function (err, user) {
