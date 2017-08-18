@@ -2,18 +2,24 @@ extend ../layouts/layout-main
 block content
     h3 Register
     form(id="form" method="post", action="/register")
-        label Name
-        br
+        label Username
         input(type="text" name="userName")
         br
         label Password
-        br
         input(type="password", name="password")
+        br
         label Email
-        br
         input(type="text", name="email")
-        label Age
         br
+        label Age
         input(type="number", name="age")
         br
+        div
+            each question, index in questions
+                ul 
+                label #{question.question}
+                    each answer in question.answers
+                        li
+                            input(type='radio' name="answer" + (index + 1) value=answer.id)                                    
+                            label #{answer.value}
         input(type="submit" value="Submit")
