@@ -10,7 +10,17 @@ module.exports = function(mongoose) {
         answer3: String
     });
 
+    var questionSchema = mongoose.Schema({
+        question: String,
+        answer1: String,
+        answer2: String,
+        answer3: String,
+        answer4: String
+    });
+
     return {
-        Users: mongoose.model('User_Accounts', userSchema)
+        Users: mongoose.model('User_Accounts', userSchema),
+        Questions: mongoose.model('Questions', questionSchema)
     };
 }
+

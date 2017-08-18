@@ -19,6 +19,7 @@ module.exports = function(repository) {
 }
 
 var home = function (req, res) {
+    
     models.Users.find({}, function (err, users) {
         if (err) return console.error(err);
         var ans1 = [];

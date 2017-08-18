@@ -56,6 +56,58 @@ var registerUser = function(data) {
     });
 }
 
+function generateQuestions()
+{
+    console.log("GENERATEQUESTIONS()");
+
+    models.Questions.find({}, function (err, questions) {
+        if (err) return console.error(err);
+        if(questions.length == 0)
+        {
+            var question1 = new models.Questions({
+                question: "What is the distance from the Earth to the moon?",
+                answer1: "2,800 mi",
+                answer2: "50,600 mi",
+                answer3: "238,900 mi",
+                answer4: "561,200 mi"
+            });
+
+            var question2 = new models.Questions({
+                question: "Which civilization did Poseidon belong to?",
+                answer1: "Roman",
+                answer2: "Greek",
+                answer3: "Aztec",
+                answer4: "Mongolian"
+            });
+
+            var question2 = new models.Questions({
+                question: "What is the freezing point of water?",
+                answer1: "0 degrees celsius",
+                answer2: "0 degrees fahrenheit",
+                answer3: "5 degrees celsius",
+                answer4: "5 degrees fahrenheit"
+            });
+
+            question1.save(function (err, user) {
+                if (err) console.error("Question 1 failed to save.");
+                console.log("Saved question 1.");
+            });
+            question2.save(function (err, user) {
+                if (err) console.error("Question 2 failed to save.");
+                console.log("Saved question 2.");
+            });
+            question3.save(function (err, user) {
+                if (err) console.error("Question 3 failed to save.");
+                console.log("Saved question 3.");
+            });
+        }
+        else
+        {
+            console.log("No questions added.");
+        }
+    });
+}
+
 function deleteAllUsers() {
     console.log("DELETEALLUSERS()");
     var allUsers = models.Users.find({});
@@ -80,6 +132,7 @@ function deleteAllUsers() {
 }
 
 function seedDatabase() {
+    generateQuestions();
     var query = models.Users.findOne({ username: "admin" });
     query.exec().then(function (doc) {
         if (doc) {
