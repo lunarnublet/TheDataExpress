@@ -2,30 +2,32 @@ doctype html
 html
     head
         title #{config.title}
-        link(rel='stylesheet', href='/css/stylez.css')
+        //- link(rel='stylesheet', href='/css/stylez.css')
+        link(rel='stylesheet', href='/css/tde.css')
     body
         div(id='page-wrapper')
-            header(class='main-nav')
-                h1(class='brand') #{config.title}
-                nav(class='nav-flex') 
-                    ul(class='nav-list')
-                        each item in config.nav
-                            li(class='nav-item')
-                                a(href=item[1]) #{item[0]}
-                        if userSession
-                            if userSession.role == 'admin'
-                                li(class='nav-item')                                
-                                    a(href='/admin') Admin
-                            li(class='nav-item')
-                                a(href='/edit') Account
-                            li(class='nav-item')
-                                a(href='/logout') Logout
-                        else
-                            li(class='nav-item')
-                                a(href='/login') Login
-                            li(class='nav-item')
-                                a(href='/register') Register
-            div(id="content")
+            aside(class='sidebar')
+                header(class='main-nav')
+                    h1(class='brand') #{config.title}
+                    nav(class='nav-flex') 
+                        ul(class='nav-list')
+                            each item in config.nav
+                                li(class='nav-item')
+                                    a(href=item[1]) #{item[0]}
+                            if userSession
+                                if userSession.role == 'admin'
+                                    li(class='nav-item')                                
+                                        a(href='/admin') Admin
+                                li(class='nav-item')
+                                    a(href='/edit') Account
+                                li(class='nav-item')
+                                    a(href='/logout') Logout
+                            else
+                                li(class='nav-item')
+                                    a(href='/login') Login
+                                li(class='nav-item')
+                                    a(href='/register') Register
+            div(class="content")
                 if time
                     p #{time}
                 block content

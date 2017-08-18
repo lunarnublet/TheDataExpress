@@ -116,23 +116,25 @@ padding: 0; }
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
-    background-image: linear-gradient(to bottom, transparent 50%, #fefefe 50%, #fefefe 96%, #e84f4c 96%);
-    background-size: 100% 200%;
+    background-image: linear-gradient(to bottom, transparent 40%, #fefefe 50%, #fefefe 100%, #e84f4c 0%);
+    background-size: 100% 250%;
     background-position: top center;
 transition: all .1s ease-out; }
 .nav-item:hover {
     background-position: bottom center;
     color: rgba(0, 0, 0, 0.75);
-transform: scale(1, 1.15); }
+/* transform: scale(1, 1.15); */
+}
 .nav-item a {
     display: block;
     padding: 2.5rem 0;
     transition: all .1s ease-in;
 transform: skew(20deg); }
 .nav-item a:hover {
-    transform: scale(1, 0.6);
-    letter-spacing: 2px;
-font-size: 1.15rem; }
+    /* transform: scale(1, 0.6); */
+    /* letter-spacing: 2px; */
+/* font-size: 1.15rem;  */
+}
 
 .img {
     height: auto;
