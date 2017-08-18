@@ -2,10 +2,10 @@ extends ../layouts/layout-main
 block content
     each question, index in questions
         div(class="graph")
-            h2 #{question.question}
-            ul 
+            h2(class="question-title") #{question.question}
+            ul(class="question-list") 
                 each answer in question.answers
-                    li
+                    li(class="question-items")
                         p #{answer.value}
             canvas(id="graph" + (index + 1))
 block script
