@@ -154,11 +154,7 @@ var login = function (req, res) {
 }
 var loginPost = function (req, res, next) {
     models.tryLoginUser(req.body.userName, req.body.password, function (user) {
-<<<<<<< HEAD
-        console.log(user);
-=======
         console.log("login:POST\n", user);
->>>>>>> 19902687f5371630aef5222675e5cae19c45d071
 
         if (user) {
             req.session.user = user;
