@@ -3,6 +3,11 @@ body
     background: #00ffff;
 }
 
+footer
+{
+    text-align: center;
+}
+
 .graph
 {
     height: 200px;
