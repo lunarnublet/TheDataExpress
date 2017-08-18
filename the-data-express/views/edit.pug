@@ -30,13 +30,31 @@ block content
                 each question, index in questions
                     ul 
                     label #{question.question}
-                        each answer in question.answers
                             //- - console.log("" + (index + 1) +  " " + (answer.id));
-                            li
-                                if userToEdit["answer" + (index + 1)] == answer.id
-                                    input(type='radio' name="answer" + (index + 1) value=answer.id checked)
-                                else 
-                                    input(type='radio' name="answer" + (index + 1) value=answer.id)                                    
-                                label #{answer.value}
+                    li
+                        if userToEdit["answer" + (index + 1)] == 1
+                            input(type='radio' name="answer" + (index + 1) value=1 checked)
+                        else 
+                            input(type='radio' name="answer" + (index + 1) value=1)                                    
+                        label #{question.answer1}
+                    li
+                        if userToEdit["answer" + (index + 1)] == 2
+                            input(type='radio' name="answer" + (index + 1) value=2 checked)
+                        else 
+                            input(type='radio' name="answer" + (index + 1) value=2)                                    
+                        label #{question.answer2}
+                    li
+                        if userToEdit["answer" + (index + 1)] == 3
+                            input(type='radio' name="answer" + (index + 1) value=3 checked)
+                        else 
+                            input(type='radio' name="answer" + (index + 1) value=3)                                    
+                        label #{question.answer3}
+                    li
+                        if userToEdit["answer" + (index + 1)] == 4
+                            input(type='radio' name="answer" + (index + 1) value=4 checked)
+                        else 
+                            input(type='radio' name="answer" + (index + 1) value=4)                                    
+                        label #{question.answer4}
+                    
 
             input(type="submit" value="Submit")

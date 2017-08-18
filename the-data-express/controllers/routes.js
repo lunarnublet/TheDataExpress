@@ -19,6 +19,7 @@ module.exports = function (repository) {
 }
 
 var home = function (req, res) {
+    
     models.Users.find({}, function (err, users) {
         if (err) return console.error(err);
         var ans1 = [];
@@ -199,17 +200,20 @@ var editUser = function (req, res, next) {
 
     // only let admins or the same user edit a user's information    
     if (req.session.user.role === "admin" ||
-        req.session.user._id === userId) {
+    req.session.user._id === userId) {
 
         var query = models.Users.findOne({ _id: userId });
         query.exec().then(function (val) {
-            console.log("editUser:GET\n", val);
-            res.render("edit", {
-                userToEdit: val,
-                userSession: req.session.user,
-                time: req.cookies.time,
-                config: config,
-                questions: config.questions
+            models.Questions.find({}, function (err, questions) {
+                if (err) return console.error(err);
+                console.log("editUser:GET\n", val);
+                res.render("edit", {
+                    userToEdit: val,
+                    userSession: req.session.user,
+                    time: req.cookies.time,            
+                    config: config,
+                    questions: questions
+                });
             });
         }, function (reason) {
             console.log(reason);
@@ -224,7 +228,7 @@ var editUserPost = function (req, res, next) {
 
     // only let admins or the same user edit a user's information
     if (req.session.user.role === "admin" ||
-        req.session.user._id === userId) {
+    req.session.user._id === userId) {
 
         var info = { id: userId };
         if (req.body.email) info.email = req.body.email;
