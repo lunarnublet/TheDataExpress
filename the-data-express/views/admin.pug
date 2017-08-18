@@ -1,18 +1,24 @@
 extend ../layouts/layout-main
 block content
-    p #{time}
     table
         tr
             th ID
+            th Role
             th User
             th Email
             th Age
-            //- th Q1
-            //- th Q2
-            //- th Q3
+            th Q1
+            th Q2
+            th Q3
         each user in users
             tr
                 td #{user.id}
+                td #{user.role}
                 td #{user.username}
                 td #{user.email}
-                td #{user.age}          
+                td #{user.age}
+                td #{user.answer1}
+                td #{user.answer2}
+                td #{user.answer3}                
+                td 
+                    a(href='/edit/' + user.id) Edit 

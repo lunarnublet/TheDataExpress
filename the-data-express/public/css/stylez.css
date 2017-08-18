@@ -1,6 +1,7 @@
 body
 {
     background: #00ffff;
+    background: #fefefe;
 }
 
 footer
@@ -10,8 +11,8 @@ footer
 
 .graph
 {
-    height: 200px;
-    width:  450px;
+    /* height: 200px; */
+    width: 450px;
     margin-left: auto;
     margin-right: auto;
 }

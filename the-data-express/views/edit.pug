@@ -1,0 +1,42 @@
+extend ../layouts/layout-main
+block content
+    h3 Edit Information
+        form(id="form" method="post", action="/edit")
+            input(type="hidden", name="id", value=userToEdit.id)
+            //- label Name
+            //- br
+            //- input(type="text" name="userName")
+            br
+            label Password
+            input(type="password", name="password")        
+            br
+            label Email
+            input(type="text", name="email", value=userToEdit.email)
+            br
+            if userSession.role == 'admin'
+                label Role
+                if userToEdit.role == 'user'
+                    select(name='role', id='role')
+                        option(value='admin') Admin
+                        option(value='user' selected) User
+                else
+                    select(name='role', id='role')
+                        option(value='admin' selected) Admin
+                        option(value='user') User
+                br
+            label Age
+            input(type="number", name="age", value=userToEdit.age)
+            div
+                each question, index in questions
+                    ul 
+                    label #{question.question}
+                        each answer in question.answers
+                            //- - console.log("" + (index + 1) +  " " + (answer.id));
+                            li
+                                if userToEdit["answer" + (index + 1)] == answer.id
+                                    input(type='radio' name="answer" + question.id value=answer.id checked)
+                                else 
+                                    input(type='radio' name="answer" + question.id value=answer.id)                                    
+                                label #{answer.value}
+
+            input(type="submit" value="Submit")
