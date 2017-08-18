@@ -169,13 +169,16 @@ var editUser = function (req, res, next) {
 
         var query = models.Users.findOne({ _id: userId });
         query.exec().then(function (val) {
-            console.log("editUser:GET\n", val);
-            res.render("edit", {
-                userToEdit: val,
-                userSession: req.session.user,
-                time: req.cookies.time,            
-                config: config,
-                questions: config.questions
+            models.Questions.find({}, function (err, questions) {
+                if (err) return console.error(err);
+                console.log("editUser:GET\n", val);
+                res.render("edit", {
+                    userToEdit: val,
+                    userSession: req.session.user,
+                    time: req.cookies.time,            
+                    config: config,
+                    questions: questions
+                });
             });
         }, function (reason) {
             console.log(reason);

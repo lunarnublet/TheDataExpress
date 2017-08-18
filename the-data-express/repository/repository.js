@@ -60,8 +60,17 @@ function generateQuestions()
 {
     console.log("GENERATEQUESTIONS()");
 
+
+
     models.Questions.find({}, function (err, questions) {
         if (err) return console.error(err);
+
+        // questions.forEach(function (question) {
+        //     var remove = models.Questions.remove(question);
+        //     remove.exec().then(function (res) {
+        //         console.log("  Deleted question: " + question.question);
+        //     });
+        // });
         if(questions.length == 0)
         {
             var question1 = new models.Questions({
@@ -80,7 +89,7 @@ function generateQuestions()
                 answer4: "Mongolian"
             });
 
-            var question2 = new models.Questions({
+            var question3 = new models.Questions({
                 question: "What is the freezing point of water?",
                 answer1: "0 degrees celsius",
                 answer2: "0 degrees fahrenheit",
