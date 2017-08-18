@@ -89,11 +89,20 @@ var home = function (req, res) {
         for (var i = 0; i < ans3.length; ++i) {
             ans3[i] = (ans3[i] / users.length) * 100;
         }
-        res.render("index", {
-            config: config, ans1: ans1, ans2: ans2, ans3: ans3, answerNames1: strings1, answerNames2: strings2, answerNames3: strings3,
-            questions: config.questions,
-            userSession: req.session.user,
-            time: req.cookies.time,
+        models.Questions.find({}, function (err, questions) {
+            if (err) return console.error(err);
+            res.render("index", {
+                config: config, 
+                ans1: ans1, 
+                ans2: ans2, 
+                ans3: ans3, 
+                answerNames1: strings1, 
+                answerNames2: strings2, 
+                answerNames3: strings3,
+                questions: questions,
+                userSession: req.session.user,
+                time: req.cookies.time,
+            });
         });
     });
 }
