@@ -4,12 +4,6 @@ var ctx3 = document.getElementById("graph-canvas-3").getContext("2d");
 
 function BarGraph(ctx)
 {
-    // this.startArray = [];
-    // this.endArray = [];
-    // this.looping = false;
-    // this.delta = 0;
-    // this.animationComplete = false;
-
     this.ctx = ctx;
     this.width = 450;
     this.height = 200;	
@@ -28,54 +22,7 @@ BarGraph.prototype.update = function (newArr)
 {
     this.curArr = newArr;
     this.draw(newArr);
-    // if (this.curArr.length !== newArr.length) 
-    // {
-    //     this.curArr = newArr;
-
-    //     this.draw(newArr);
-    // } 
-    // else 
-    // {
-    //     this.startArray = this.curArr;
-    //     this.endArray = newArr;
-    //     console.log("startArray: " + this.startArray);
-    //     console.log("endArray: " + this.endArray);
-
-    //     if (!this.looping) {	
-    //         this.loop();
-    //     }
-    // }
 };
-
-// BarGraph.prototype.loop = function()
-// {
-//     console.log("in loop");
-//     this.looping = true;
-//     this.animationComplete = true;
-
-//     for (var i = 0; i < this.endArray.length; i += 1) 
-//     {
-//         this.delta = (this.endArray[i] - this.startArray[i]) / this.animationSteps;
-//         this.curArr[i] += this.delta;
-//         if (this.delta) 
-//         {
-//             this.animationComplete = false;
-//         }
-//     }
-//     if (this.animationComplete) 
-//     {
-
-//         this.looping = false;
-//     } 
-//     else 
-//     {
-//         console.log("endArray: " + this.endArray);
-//         this.draw(this.curArr);
-//         console.log("endArray: " + this.endArray);
-//         setTimeout(this.loop, this.animationInterval / this.animationSteps);
-//     }
-
-// };
 
 BarGraph.prototype.draw = function(array)
 {
