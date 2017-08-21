@@ -109,10 +109,13 @@ var home = function (req, res) {
 }
 
 var register = function (req, res) {
-    res.render("register", {
-        config: config,
-        time: req.cookies.time,
-        questions: config.questions,
+    models.Questions.find({}, function (err, questions) {
+        if (err) return console.error(err);
+        res.render("register", {
+            config: config,
+            time: req.cookies.time,            
+            questions: questions
+        });
     });
 }
 var registerPost = function (req, res) {

@@ -13,12 +13,21 @@ block content
                 input(type="text", name="email")
                 label(class="form-label") Age
                 input(type="number", name="age")
-                div(id="reg-questions")
+                div
                     each question, index in questions
                         ul 
-                        label #{question.question}
-                            each answer in question.answers
-                                li(id="reg-answer-" + answer.id)
-                                    input(type='radio' name="answer" + (index + 1) value=answer.id)                                    
-                                    label #{answer.value}
+                            label(class='form-label') #{question.question}
+                                //- - console.log("" + (index + 1) +  " " + (answer.id));
+                            li
+                                input(type='radio' name="answer" + (index + 1) value=1)                                    
+                                label #{question.answer1}
+                            li
+                                input(type='radio' name="answer" + (index + 1) value=2)                                    
+                                label #{question.answer2}
+                            li
+                                input(type='radio' name="answer" + (index + 1) value=3)                                    
+                                label #{question.answer3}
+                            li
+                                input(type='radio' name="answer" + (index + 1) value=4)                                    
+                                label #{question.answer4}
             input(type="submit" value="Submit" class='form-btn')
