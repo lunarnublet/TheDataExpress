@@ -2,13 +2,15 @@ doctype html
 html
     head
         title #{config.title}
+        link(href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600|Roboto+Slab" rel="stylesheet")
         //- link(rel='stylesheet', href='/css/stylez.css')
         link(rel='stylesheet', href='/css/tde.css')
     body
         div(id='page-wrapper')
             aside(class='sidebar')
                 header(class='main-nav')
-                    h1(class='brand') #{config.title}
+                    h1(class='brand') The Data Express
+                    hr(class='nav-separator')
                     nav(class='nav-flex') 
                         ul(class='nav-list')
                             each item in config.nav
@@ -27,10 +29,14 @@ html
                                     a(href='/login') Login
                                 li(class='nav-item')
                                     a(href='/register') Register
-            div(class="content")
                 if time
-                    p #{time}
-                block content
+                    hr(class='nav-separator')
+                    p(class='time') #{time}
+            div(class="content")
+                div(class='page-header')
+                    block page-title
+                div(class='sidebar-push')
+                    block content
         block script
         //- footer
         //-     h6 The Data Express &copy2017

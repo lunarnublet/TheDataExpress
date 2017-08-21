@@ -1,26 +1,32 @@
 extend ../layouts/layout-main
+block page-title
+    h1 Admin
 block content
-    table
-        tr
-            th ID
-            th Role
-            th User
-            th Email
-            th Age
-            th Q1
-            th Q2
-            th Q3
-        each user in users
+    table(class='table')
+        thead
             tr
-                td #{user.id}
-                td #{user.role}
-                td #{user.username}
-                td #{user.email}
-                td #{user.age}
-                td #{user.answer1}
-                td #{user.answer2}
-                td #{user.answer3}                
-                td 
-                    a(href='/edit/' + user.id) Edit
-                td 
-                    a(href='/delete/' + user.id) Delete
+                th ID
+                th Username
+                th Role
+                th Email
+                th Age
+                th Q1
+                th Q2
+                th Q3
+                th
+                th
+        tbody
+            each user in users
+                tr
+                    td #{user.id}
+                    td #{user.username}
+                    td #{user.role}
+                    td #{user.email}
+                    td #{user.age}
+                    td #{user.answer1}
+                    td #{user.answer2}
+                    td #{user.answer3}                
+                    td 
+                        a(href='/edit/' + user.id) Edit
+                    td 
+                        a(href='/delete/' + user.id) Delete

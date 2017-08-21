@@ -1,26 +1,24 @@
 extend ../layouts/layout-main
+block page-title
+    h1 Register
 block content
     div(id="register")
-        h3 Register
-        form(id="form" method="post", action="/register")
-            label(class="label") Username
-            input(type="text" name="userName")
-            br
-            label(class="label") Password
-            input(type="password", name="password")
-            br
-            label(class="label") Email
-            input(type="text", name="email")
-            br
-            label(class="label") Age
-            input(type="number", name="age")
-            br
-            div(id="reg-questions")
-                each question, index in questions
-                    ul 
-                    label #{question.question}
-                        each answer in question.answers
-                            li(id="reg-answer-" + answer.id)
-                                input(type='radio' name="answer" + (index + 1) value=answer.id)                                    
-                                label #{answer.value}
-            input(type="submit" value="Submit")
+        form(id="form" method="post", action="/register" class="form")
+            fieldset
+                label(class="form-label") Username
+                input(type="text" name="userName")
+                label(class="form-label") Password
+                input(type="password", name="password")
+                label(class="form-label") Email
+                input(type="text", name="email")
+                label(class="form-label") Age
+                input(type="number", name="age")
+                div(id="reg-questions")
+                    each question, index in questions
+                        ul 
+                        label #{question.question}
+                            each answer in question.answers
+                                li(id="reg-answer-" + answer.id)
+                                    input(type='radio' name="answer" + (index + 1) value=answer.id)                                    
+                                    label #{answer.value}
+            input(type="submit" value="Submit" class='form-btn')

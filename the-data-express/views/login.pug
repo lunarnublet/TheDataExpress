@@ -1,14 +1,12 @@
 extends ../layouts/layout-main
+block page-title
+    h1 Login
 block content
     div(id="login")
-        h3 Login
-        form(id="form" method="post", action="/login")
-            label Name
-            br
-            input(type="text" name="userName")
-            br
-            label Password
-            br
-            input(type="password", name="password")
-            br
-            input(id="login-button" type="submit" value="Submit")
+        form(id="form" method="post", action="/login" class="form")
+            fieldset
+                label(class='form-label') Name
+                input(type="text" name="userName")
+                label(class='form-label') Password
+                input(type="password", name="password")
+            input(id="login-button" type="submit" value="Submit" class='form-btn')

@@ -1,18 +1,25 @@
 extends ../layouts/layout-main
+block page-title
+    h1 Home
 block content
     div(class="graph-container")
         each question, index in questions
                 div(id="graph" + (index + 1) class="graph")
-                    h2(class="question-title") #{question.question}
+                    h3(class="question-title") #{question.question}
+                    hr(class='separator')
                     ul(class="question-list") 
                         li(class="question-items")
-                            p #{question.answer1 + "(1)"}
+                            p(class='question-qualifier') 1.
+                            p #{question.answer1}
                         li(class="question-items")
-                            p #{question.answer2 + "(2)"}
+                            p(class='question-qualifier') 2.
+                            p #{question.answer2}
                         li(class="question-items")
-                            p #{question.answer3 + "(3)"}
+                            p(class='question-qualifier') 3.
+                            p #{question.answer3}
                         li(class="question-items")
-                            p #{question.answer4 + "(4)"}
+                            p(class='question-qualifier') 4.
+                            p #{question.answer4}
                     canvas(id="graph-canvas-" + (index + 1) class="graph-canvases")
 block script
     script.

@@ -28,6 +28,7 @@ var home = function (req, res) {
         var strings2 = [];
         var ans3 = [];
         var strings3 = [];
+        var letters = ["A", "B", "C", "D"];
         for (var i = 0; i < users.length; ++i) {
             var v = 0;
             var isAThing1 = false;
@@ -156,10 +157,12 @@ var registerPost = function (req, res) {
         });
     }
 
+    
 }
 var login = function (req, res) {
     res.render("login", {
         config: config,
+        time: req.cookies.time,
     });
 }
 var loginPost = function (req, res, next) {

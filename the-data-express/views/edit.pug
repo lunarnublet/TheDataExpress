@@ -1,60 +1,56 @@
 extend ../layouts/layout-main
+block page-title
+    h1 Edit Information
 block content
-    h3 Edit Information
-        form(id="form" method="post", action="/edit")
-            input(type="hidden", name="id", value=userToEdit.id)
-            //- label Name
-            //- br
-            //- input(type="text" name="userName")
-            br
-            label Password
-            input(type="password", name="password")        
-            br
-            label Email
-            input(type="text", name="email", value=userToEdit.email)
-            br
-            if userSession.role == 'admin'
-                label Role
-                if userToEdit.role == 'user'
-                    select(name='role', id='role')
-                        option(value='admin') Admin
-                        option(value='user' selected) User
-                else
-                    select(name='role', id='role')
-                        option(value='admin' selected) Admin
-                        option(value='user') User
-                br
-            label Age
-            input(type="number", name="age", value=userToEdit.age)
-            div
-                each question, index in questions
-                    ul 
-                    label #{question.question}
-                            //- - console.log("" + (index + 1) +  " " + (answer.id));
-                    li
-                        if userToEdit["answer" + (index + 1)] == 1
-                            input(type='radio' name="answer" + (index + 1) value=1 checked)
-                        else 
-                            input(type='radio' name="answer" + (index + 1) value=1)                                    
-                        label #{question.answer1}
-                    li
-                        if userToEdit["answer" + (index + 1)] == 2
-                            input(type='radio' name="answer" + (index + 1) value=2 checked)
-                        else 
-                            input(type='radio' name="answer" + (index + 1) value=2)                                    
-                        label #{question.answer2}
-                    li
-                        if userToEdit["answer" + (index + 1)] == 3
-                            input(type='radio' name="answer" + (index + 1) value=3 checked)
-                        else 
-                            input(type='radio' name="answer" + (index + 1) value=3)                                    
-                        label #{question.answer3}
-                    li
-                        if userToEdit["answer" + (index + 1)] == 4
-                            input(type='radio' name="answer" + (index + 1) value=4 checked)
-                        else 
-                            input(type='radio' name="answer" + (index + 1) value=4)                                    
-                        label #{question.answer4}
-                    
-
-            input(type="submit" value="Submit")
+        form(id="form" method="post", action="/edit" class='form')
+            fieldset
+                input(type="hidden", name="id", value=userToEdit.id)
+                //- label Name
+                //- br
+                //- input(type="text" name="userName")
+                label(class='form-label') Password
+                input(type="password", name="password")        
+                label(class='form-label') Email
+                input(type="text", name="email", value=userToEdit.email)
+                if userSession.role == 'admin'
+                    label(class='form-label') Role
+                    if userToEdit.role == 'user'
+                        select(name='role', id='role')
+                            option(value='admin') Admin
+                            option(value='user' selected) User
+                    else
+                        select(name='role', id='role')
+                            option(value='admin' selected) Admin
+                            option(value='user') User
+                label(class='form-label') Age
+                input(type="number", name="age", value=userToEdit.age)
+                div
+                    each question, index in questions
+                        ul 
+                            label(class='form-label') #{question.question}
+                                //- - console.log("" + (index + 1) +  " " + (answer.id));
+                            li
+                                if userToEdit["answer" + (index + 1)] == 1
+                                    input(type='radio' name="answer" + (index + 1) value=1 checked)
+                                else 
+                                    input(type='radio' name="answer" + (index + 1) value=1)                                    
+                                label #{question.answer1}
+                            li
+                                if userToEdit["answer" + (index + 1)] == 2
+                                    input(type='radio' name="answer" + (index + 1) value=2 checked)
+                                else 
+                                    input(type='radio' name="answer" + (index + 1) value=2)                                    
+                                label #{question.answer2}
+                            li
+                                if userToEdit["answer" + (index + 1)] == 3
+                                    input(type='radio' name="answer" + (index + 1) value=3 checked)
+                                else 
+                                    input(type='radio' name="answer" + (index + 1) value=3)                                    
+                                label #{question.answer3}
+                            li
+                                if userToEdit["answer" + (index + 1)] == 4
+                                    input(type='radio' name="answer" + (index + 1) value=4 checked)
+                                else 
+                                    input(type='radio' name="answer" + (index + 1) value=4)                                    
+                                label #{question.answer4}
+            input(type="submit" value="Submit" class="form-btn")
