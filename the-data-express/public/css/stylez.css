@@ -1,56 +1,118 @@
-body {
+body 
+{
     font-family: "Source Sans Pro", sans-serif;
-font-weight: 400; }
+    font-weight: 400; 
+}
 
-h1 {
-font-size: 36px; }
+h1 
+{
+    font-size: 36px; 
+}
 
-h2 {
-font-size: 32px; }
+h2 
+{
+    font-size: 32px; 
+}
 
-h3 {
-font-size: 28px; }
+h3 
+{
+    font-size: 28px; 
+}
 
-h4 {
-font-size: 24px; }
+h4 
+{
+    font-size: 24px; 
+}
 
-h5 {
-font-size: 20px; }
+h5 
+{
+    font-size: 20px; 
+}
 
-h6 {
-font-size: 16px; }
+h6 
+{
+    font-size: 16px; 
+}
+
+.graph-container
+{
+    margin: auto 10%;
+}
+
+.graph-container > div 
+{
+    display: inline-block;
+}
 
 .graph
 {
-    /* height: 200px; */
-    width: 450px;
-    margin-left: auto;
-    margin-right: auto;
+    background-color: #aaa;
+    width: 30%; 
+    margin: 5px;
 }
 
 #graph1
 {
-    /* float: left; */
 }
 
 #graph2
 {
-    /* display: inline; */
 }
 
 #graph3
 {
-    /* float: right; */
 }
 
 .question-title
 {
-    float: left;
+    text-align: center;
 }
 
 .question-list
 {
+    list-style: none;
+}
+
+#login
+{
+    margin: auto 40%;
+}
+
+#login form input
+{
+    width: 300px;
+    margin-top: 10px;
+}
+
+#login form input[type=submit]
+{
+    width: 100px;
+    margin: 0 25%;
+    margin-top: 10px;
+}
+
+#register
+{
+    margin: auto 40%;
+}
+
+#register form input[type=text], #register form input[type=password], #register form input[type=number]
+{
     float: right;
+    clear: both;
+    width: 100px;
+}
+
+#register form input[type=submit]
+{
+    width: 100px;
+    margin: 0 25%;
+    margin-top: 10px;
+}
+
+#register li
+{
+    list-style: none;
 }
 
 .txt-center {
