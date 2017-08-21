@@ -1,19 +1,19 @@
 extends ../layouts/layout-main
 block content
-    each question, index in questions
-        div(class="graphs")
-            div(id="graph" + (index + 1) class="graph")
-                h2(class="question-title") #{question.question}
-                ul(class="question-list") 
-                    li(class="question-items")
-                        p #{question.answer1 + "(1)"}
-                    li(class="question-items")
-                        p #{question.answer2 + "(2)"}
-                    li(class="question-items")
-                        p #{question.answer3 + "(3)"}
-                    li(class="question-items")
-                        p #{question.answer4 + "(4)"}
-                canvas(id="graph-canvas-" + (index + 1))
+    div(class="graph-container")
+        each question, index in questions
+                div(id="graph" + (index + 1) class="graph")
+                    h2(class="question-title") #{question.question}
+                    ul(class="question-list") 
+                        li(class="question-items")
+                            p #{question.answer1 + "(1)"}
+                        li(class="question-items")
+                            p #{question.answer2 + "(2)"}
+                        li(class="question-items")
+                            p #{question.answer3 + "(3)"}
+                        li(class="question-items")
+                            p #{question.answer4 + "(4)"}
+                    canvas(id="graph-canvas-" + (index + 1) class="graph-canvases")
 block script
     script.
         var graph1Answers = [#{ans1}];
