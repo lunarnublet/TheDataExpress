@@ -93,7 +93,8 @@ footer {
   border-radius: 95%; }
 
 body {
-  background-color: #fefefe; }
+  background-color: #fefefe;
+  color: rgba(0, 0, 0, 0.74); }
 
 fieldset {
   width: 100%;
@@ -136,9 +137,8 @@ fieldset {
   border: 1px solid #4db6ac;
   border: none;
   border-radius: 5px; }
-
-.form-btn:hover {
-  background-color: #4bb5ab; }
+  .form-btn:hover {
+    background-color: #3c948b; }
 
 .sidebar {
   position: fixed;

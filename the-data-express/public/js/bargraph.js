@@ -9,7 +9,7 @@ function BarGraph(ctx)
     this.height = 200;	
     this.maxValue;
     this.margin = 5;
-    this.colors = ["purple", "red", "green", "yellow"];
+    this.colors = ["#4db6ac", "#64b5f6", "#e57373", "#fff176"];
     this.curArr = [];
     this.backgroundColor = "rgba(0,0,0,0)";
     this.xAxisLabelArr = [];
@@ -57,6 +57,13 @@ BarGraph.prototype.draw = function(array)
     barWidth = (graphAreaWidth / numOfBars) - this.margin * 2;
     maxBarHeight = graphAreaHeight - 25;
 
+    let randomColors = [0,1,2,3];
+
+    for (let index = randomColors.length; index; --index) {
+        let shuffle =   Math.floor(Math.random() * index);
+        [randomColors[index - 1], randomColors[shuffle]] = [randomColors[shuffle], randomColors[index - 1]];
+    }
+
     for (i = 0; i < array.length; ++i) 
     {
         ratio = array[i] / 100;
@@ -67,7 +74,7 @@ BarGraph.prototype.draw = function(array)
         this.ctx.shadowBlur = 2;
         this.ctx.shadowColor = "#999";
 
-        this.ctx.fillStyle = "#333";			
+        this.ctx.fillStyle = this.colors[randomColors[i]] /*"#333"*/;			
         this.ctx.fillRect(this.margin + i * this.width / numOfBars, graphAreaHeight - barHeight, barWidth, barHeight);
             
         this.ctx.shadowOffsetX = 0;

@@ -5,7 +5,7 @@ block content
     div(class="graph-container")
         each question, index in questions
                 div(id="graph" + (index + 1) class="graph")
-                    h3(class="question-title") #{question.question}
+                    h4(class="question-title") #{question.question}
                     hr(class='separator')
                     ul(class="question-list") 
                         li(class="question-items")
